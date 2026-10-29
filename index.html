@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Finney Supply Co.</title>
+<meta name="description" content="Correctional hygiene and medical supplies for Alabama county jails. Based in Birmingham, Alabama.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an institutional spec sheet. A tagged product catalog, then a quote builder, read like a county purchasing form. */
+:root{
+  --bg:#EEF1F0;
+  --paper:#FFFFFF;
+  --ink:#14211E;
+  --muted:#55625F;
+  --rule:#C9D1CE;
+  --accent:#1E5B4E;
+  --accent-ink:#FFFFFF;
+  --tag:#E8B33A;
+  --tag-ink:#2A2108;
+  --soft:#DDE5E2;
+  --font-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --font-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1614;--paper:#16201D;--ink:#E4ECE9;--muted:#9AA9A5;--rule:#2B3834;
+  --accent:#6FC1AC;--accent-ink:#0B1A16;--tag:#E8B33A;--tag-ink:#2A2108;--soft:#1D2A26;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1614;--paper:#16201D;--ink:#E4ECE9;--muted:#9AA9A5;--rule:#2B3834;
+  --accent:#6FC1AC;--accent-ink:#0B1A16;--tag:#E8B33A;--tag-ink:#2A2108;--soft:#1D2A26;color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.55}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--font-display);text-transform:uppercase;letter-spacing:.01em;line-height:1.02;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--tag);outline-offset:2px}
+.mono{font-family:var(--font-mono)}
+.label{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* header */
+header{border-bottom:1px solid var(--rule);background:var(--paper)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.mark{width:34px;height:34px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:1.25rem;border-radius:3px}
+.brand span{font-family:var(--font-display);font-weight:800;font-size:1.4rem;text-transform:uppercase;letter-spacing:.02em}
+nav{display:flex;gap:18px;flex-wrap:wrap}
+nav a{color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500}
+nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding-block:56px 40px}
+.hero .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end}
+.hero h1{font-size:clamp(2.6rem,6.5vw,4.6rem);font-weight:800}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.lede{margin-top:18px;font-size:1.125rem;max-width:56ch;color:var(--muted)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:3px;font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid var(--accent);cursor:pointer;font-family:var(--font-body)}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:hover{filter:brightness(1.08)}
+.spec{background:var(--paper);border:1px solid var(--rule);border-radius:4px;min-width:0}
+.spec-head{display:flex;justify-content:space-between;padding:10px 16px;border-bottom:1px dashed var(--rule)}
+.spec ul{list-style:none;margin:0;padding:6px 16px 14px}
+.spec li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--soft);font-size:.95rem}
+.spec li:last-child{border-bottom:0}
+.spec li b{font-weight:600}
+.spec li span{color:var(--muted);text-align:right}
+
+/* compliance strip */
+.strip{background:var(--accent);color:var(--accent-ink)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-block:20px}
+.strip div{font-size:.92rem;line-height:1.4}
+.strip strong{display:block;font-family:var(--font-display);font-size:1.2rem;text-transform:uppercase;letter-spacing:.02em}
+
+/* sections */
+section.block{padding-block:64px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.sec-head h2{font-size:clamp(2rem,4.5vw,3rem);font-weight:800}
+.sec-head p{max-width:52ch;color:var(--muted)}
+
+.cat{margin-top:36px}
+.cat:first-of-type{margin-top:0}
+.cat-title{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:16px}
+.cat-title h3{font-size:1.5rem;font-weight:700}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.card{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.card h4{margin:0;font-size:1.05rem;font-weight:600;line-height:1.3}
+.tag{flex:none;background:var(--tag);color:var(--tag-ink);font-family:var(--font-mono);font-size:.7rem;font-weight:500;letter-spacing:.05em;padding:3px 7px;border-radius:2px;text-transform:uppercase}
+.card p{font-size:.92rem;color:var(--muted)}
+.card dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:2px 0 0;font-size:.85rem}
+.card dt{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+.card dd{margin:0}
+.add{margin-top:auto;align-self:flex-start;background:transparent;border:1px solid var(--accent);color:var(--accent);padding:8px 12px;border-radius:3px;font:600 .85rem var(--font-body);cursor:pointer}
+.add[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s}
+.step{border-top:3px solid var(--accent);padding-top:14px;counter-increment:s}
+.step::before{content:"Step " counter(s);font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.step h3{font-size:1.35rem;font-weight:700;margin:6px 0 6px}
+.step p{font-size:.93rem;color:var(--muted)}
+
+/* quote */
+.quote{background:var(--paper);border:1px solid var(--rule);border-radius:4px;display:grid;grid-template-columns:1.1fr 1fr}
+.quote-left{padding:24px;border-right:1px dashed var(--rule);min-width:0}
+.quote-right{padding:24px;min-width:0;display:flex;flex-direction:column;gap:14px}
+.qtable{width:100%;border-collapse:collapse;font-size:.92rem}
+.qtable th{text-align:left;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 0;border-bottom:1px solid var(--rule)}
+.qtable td{padding:10px 0;border-bottom:1px solid var(--soft);vertical-align:middle}
+.qtable td.q{width:110px}
+.qtable input{width:96px;padding:6px 8px;border:1px solid var(--rule);border-radius:3px;background:var(--bg);color:var(--ink);font:500 .9rem var(--font-mono);font-variant-numeric:tabular-nums}
+.qtable .rm{background:none;border:0;color:var(--muted);cursor:pointer;font-size:1.1rem;padding:4px 8px}
+.empty{padding:28px 0;color:var(--muted);font-size:.95rem}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.field input,.field textarea{padding:10px 12px;border:1px solid var(--rule);border-radius:3px;background:var(--bg);color:var(--ink);font:400 .95rem var(--font-body);width:100%}
+.field textarea{min-height:80px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+pre.out{white-space:pre-wrap;word-break:break-word;background:var(--soft);border-radius:3px;padding:14px;font:400 .82rem/1.5 var(--font-mono);margin:0;max-height:260px;overflow:auto}
+.note{font-size:.85rem;color:var(--muted)}
+.status{font-size:.85rem;color:var(--accent);font-weight:600;min-height:1.2em}
+
+/* about + contact */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.about p{color:var(--muted);max-width:60ch;margin-top:14px}
+.contact-card{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:22px}
+.contact-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--soft);flex-wrap:wrap}
+.contact-row:last-child{border-bottom:0}
+.contact-row .v{font-family:var(--font-mono);font-size:.95rem;user-select:all;word-break:break-all}
+.copy{background:transparent;border:1px solid var(--rule);color:var(--ink);padding:6px 10px;border-radius:3px;font:500 .8rem var(--font-body);cursor:pointer}
+
+footer{border-top:1px solid var(--rule);padding-block:24px;color:var(--muted);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:860px){
+  .hero .grid,.quote,.about{grid-template-columns:1fr}
+  .quote-left{border-right:0;border-bottom:1px dashed var(--rule)}
+  .strip .wrap,.steps{grid-template-columns:1fr 1fr}
+}
+@media (max-width:480px){
+  .strip .wrap,.steps,.two{grid-template-columns:1fr}
+  nav{gap:12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Finney Supply Co. home"><div class="mark">F</div><span>Finney Supply Co.</span></a>
+    <nav aria-label="Main">
+      <a href="#products">Products</a>
+      <a href="#how">How ordering works</a>
+      <a href="#quote">Request a quote</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap grid">
+      <div>
+        <p class="label">Correctional supply · Birmingham, Alabama</p>
+        <h1 style="margin-top:12px">Hygiene and intake supplies for <em>Alabama county jails</em></h1>
+        <p class="lede">Indigent hygiene items, feminine care, and medical-unit basics, shipped straight to your facility. One local contact for the supplies every booking needs.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#quote">Build a quote request</a>
+          <a class="btn ghost" href="#products">See the product list</a>
+        </div>
+      </div>
+      <aside class="spec" aria-label="What a standard intake kit covers">
+        <div class="spec-head"><span class="label">Standard intake kit</span><span class="label">Per booking</span></div>
+        <ul>
+          <li><b>Toothpaste</b><span>Travel tube</span></li>
+          <li><b>Shampoo &amp; body wash</b><span>2-in-1 bottle</span></li>
+          <li><b>Deodorant</b><span>Facility-approved style</span></li>
+          <li><b>Comb</b><span>Plastic, no metal</span></li>
+          <li><b>Shaving cream</b><span>Tube, never aerosol</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="wrap">
+      <div><strong>Security-minded</strong>No glass, no metal parts, no aerosols.</div>
+      <div><strong>Ships direct</strong>Orders go straight to your jail or sheriff's office.</div>
+      <div><strong>Case or kit</strong>Buy single items by the case, or as assembled kits.</div>
+      <div><strong>Local contact</strong>Based in Birmingham. You talk to the owner.</div>
+    </div>
+  </div>
+
+  <section class="block" id="products">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Product list</h2>
+        <p>Add items to your quote request as you go. Pricing depends on volume and case pack, so every order is quoted to your facility.</p>
+      </div>
+      <div id="catalog"></div>
+    </div>
+  </section>
+
+  <section class="block" id="how" style="background:var(--paper);border-block:1px solid var(--rule)">
+    <div class="wrap">
+      <div class="sec-head"><h2>How ordering works</h2><p>Built around how county purchasing actually runs: quote, purchase order, delivery, invoice.</p></div>
+      <div class="steps">
+        <div class="step"><h3>Send your list</h3><p>Use the quote builder below, or email the items and monthly booking volume.</p></div>
+        <div class="step"><h3>Get a written quote</h3><p>Per-unit and per-case pricing, case packs, and lead time for your facility.</p></div>
+        <div class="step"><h3>Issue a PO</h3><p>Send a purchase order through your county's normal process. Vendor forms and W-9 on request.</p></div>
+        <div class="step"><h3>Delivered to you</h3><p>Product ships to the address on the PO. Invoice follows on your county's terms.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="quote">
+    <div class="wrap">
+      <div class="sec-head"><h2>Request a quote</h2><p>Pick items above, set quantities, and copy the finished request into an email.</p></div>
+      <div class="quote">
+        <div class="quote-left">
+          <p class="label" style="margin-bottom:8px">Items on this request</p>
+          <table class="qtable">
+            <thead><tr><th>Item</th><th>Qty (cases)</th><th><span class="label" style="position:absolute;left:-9999px">Remove</span></th></tr></thead>
+            <tbody id="qbody"></tbody>
+          </table>
+          <p class="empty" id="qempty" hidden>No items yet. Choose "Add to quote" on any product above.</p>
+        </div>
+        <form class="quote-right" id="qform" novalidate>
+          <div class="two">
+            <div class="field"><label for="facility">Facility</label><input id="facility" placeholder="Example: Shelby County Jail"></div>
+            <div class="field"><label for="contactname">Your name</label><input id="contactname" placeholder="Name and title"></div>
+          </div>
+          <div class="two">
+            <div class="field"><label for="bookings">Bookings per month</label><input id="bookings" inputmode="numeric" placeholder="Approximate"></div>
+            <div class="field"><label for="phone">Phone</label><input id="phone" inputmode="tel" placeholder="Best number"></div>
+          </div>
+          <div class="field"><label for="notes">Notes</label><textarea id="notes" placeholder="Approved deodorant style, delivery address, deadline"></textarea></div>
+          <p class="label">Your request</p>
+          <pre class="out" id="out"></pre>
+          <div class="cta-row" style="margin-top:0">
+            <button type="submit" class="btn primary" id="copyreq">Copy request</button>
+          </div>
+          <p class="status" id="qstatus" aria-live="polite"></p>
+          <p class="note">Paste it into an email to <span class="mono">cfinney@finneysupplyco.com</span>. You'll get a written quote back.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap about">
+      <div>
+        <h2 style="font-size:clamp(2rem,4.5vw,3rem);font-weight:800">About Finney Supply Co.</h2>
+        <p>Finney Supply Co. is a Birmingham company that supplies county jails across Alabama. Every person booked into a jail needs basic hygiene items, and sheriffs' offices need a supplier who answers the phone, quotes fast, and ships what was ordered.</p>
+        <p>We start with the essentials on this page and add products based on what facilities ask for. If you need something that isn't listed, ask.</p>
+      </div>
+      <div class="contact-card">
+        <p class="label" style="margin-bottom:6px">Contact</p>
+        <div class="contact-row"><div><p class="label">Owner</p><p style="font-weight:600">Conner Finney</p></div></div>
+        <div class="contact-row"><div><p class="label">Email</p><p class="v" id="em">cfinney@finneysupplyco.com</p></div><button class="copy" data-copy="em">Copy</button></div>
+        <div class="contact-row"><div><p class="label">Phone</p><p class="v" id="ph">(205) 587-7424</p></div><button class="copy" data-copy="ph">Copy</button></div>
+        <div class="contact-row"><div><p class="label">Service area</p><p>Alabama county jails and sheriffs' offices</p></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Finney Supply Co. · Birmingham, Alabama</span><span>Product availability and pricing confirmed at time of quote.</span></div></footer>
+
+<script>
+const CATS=[
+ {name:"Intake hygiene",sub:"Indigent kit components",items:[
+  {id:"tp",name:"Toothpaste",tag:"Kit item",desc:"Fluoride toothpaste in travel-size tubes for intake and indigent kits.",size:"Travel tube",pack:"Bulk case"},
+  {id:"sb",name:"Shampoo & body wash",tag:"Kit item",desc:"All-purpose 2-in-1 wash. One bottle covers two kit items.",size:"Individual bottle",pack:"Bulk case"},
+  {id:"de",name:"Deodorant",tag:"Kit item",desc:"Available in more than one style so you can match your facility's rules.",size:"Roll-on or pump",pack:"Bulk case"},
+  {id:"cb",name:"Combs & hair picks",tag:"Kit item",desc:"All-plastic combs and picks. No metal parts.",size:"Standard",pack:"12 per bag"},
+  {id:"sc",name:"Shaving cream",tag:"Kit item",desc:"Tube shaving cream. No aerosol cans.",size:"Tube",pack:"Bulk case"}
+ ]},
+ {name:"Feminine care",sub:"Menstrual products for female housing units",items:[
+  {id:"mp",name:"Maxi pads",tag:"Daily need",desc:"Regular and super absorbency, with or without wings.",size:"Regular / Super",pack:"Individually wrapped"},
+  {id:"tm",name:"Tampons",tag:"Daily need",desc:"Cardboard applicator, in regular, super, and super plus.",size:"Reg / Super / Super+",pack:"Bulk case"}
+ ]},
+ {name:"Medical unit & staff",sub:"Infirmary and booking supplies",items:[
+  {id:"gl",name:"Nitrile exam gloves",tag:"Staff",desc:"Powder-free nitrile for officers, booking, and medical staff.",size:"S – XL",pack:"Box / case"},
+  {id:"af",name:"Antifungal cream",tag:"Medical",desc:"1% clotrimazole cream for athlete's foot and other common fungal infections.",size:"Tube",pack:"Case"},
+  {id:"fm",name:"Procedure face masks",tag:"Medical",desc:"Ear-loop masks for intake screening, isolation, and outbreaks.",size:"Universal",pack:"Box / case"}
+ ]}
+];
+const ALL={};CATS.forEach(c=>c.items.forEach(i=>ALL[i.id]=i));
+const quote=new Map([["tp",10],["sb",10],["cb",2]]); // example starting request
+
+const catalog=document.getElementById("catalog");
+CATS.forEach(c=>{
+  const d=document.createElement("div");d.className="cat";
+  d.innerHTML=`<div class="cat-title"><h3>${c.name}</h3><span class="label">${c.sub}</span></div><div class="products"></div>`;
+  const grid=d.querySelector(".products");
+  c.items.forEach(i=>{
+    const card=document.createElement("article");card.className="card";
+    card.innerHTML=`<div class="card-top"><h4>${i.name}</h4><span class="tag">${i.tag}</span></div>
+      <p>${i.desc}</p>
+      <dl><dt>Size</dt><dd>${i.size}</dd><dt>Pack</dt><dd>${i.pack}</dd></dl>
+      <button class="add" type="button" data-id="${i.id}" id="add-${i.id}"></button>`;
+    grid.appendChild(card);
+  });
+  catalog.appendChild(d);
+});
+catalog.addEventListener("click",e=>{
+  const b=e.target.closest(".add");if(!b)return;
+  const id=b.dataset.id;
+  if(quote.has(id))quote.delete(id);else quote.set(id,1);
+  render();
+});
+
+const qbody=document.getElementById("qbody"),qempty=document.getElementById("qempty"),out=document.getElementById("out");
+function render(){
+  document.querySelectorAll(".add").forEach(b=>{
+    const on=quote.has(b.dataset.id);
+    b.setAttribute("aria-pressed",on);b.textContent=on?"On your quote ✓":"Add to quote";
+  });
+  qbody.innerHTML="";
+  quote.forEach((q,id)=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML=`<td>${ALL[id].name}</td><td class="q"><input type="number" min="1" value="${q}" id="q-${id}" aria-label="Cases of ${ALL[id].name}"></td><td style="text-align:right"><button class="rm" type="button" aria-label="Remove ${ALL[id].name}">×</button></td>`;
+    tr.querySelector("input").addEventListener("input",ev=>{quote.set(id,Math.max(1,parseInt(ev.target.value)||1));write();});
+    tr.querySelector(".rm").addEventListener("click",()=>{quote.delete(id);render();});
+    qbody.appendChild(tr);
+  });
+  qempty.hidden=quote.size>0;
+  write();
+}
+const val=id=>document.getElementById(id).value.trim();
+function write(){
+  const lines=[];quote.forEach((q,id)=>lines.push(`- ${ALL[id].name}: ${q} case${q>1?"s":""}`));
+  out.textContent=`Subject: Quote request – ${val("facility")||"[Facility]"}
+
+Hi Conner,
+
+Please send a quote for the following:
+${lines.length?lines.join("\n"):"- (no items selected yet)"}
+
+Approximate bookings per month: ${val("bookings")||"[number]"}
+Notes: ${val("notes")||"None"}
+
+${val("contactname")||"[Name, title]"}
+${val("facility")||"[Facility]"}
+${val("phone")||"[Phone]"}`;
+}
+["facility","contactname","bookings","phone","notes"].forEach(id=>document.getElementById(id).addEventListener("input",write));
+
+function copyText(text,onok,onfail){
+  try{navigator.clipboard.writeText(text).then(onok,onfail);}catch(e){onfail();}
+}
+function selectEl(el){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);}
+const qstatus=document.getElementById("qstatus");
+document.getElementById("qform").addEventListener("submit",e=>{
+  e.preventDefault();
+  if(!quote.size){qstatus.textContent="Add at least one item before copying.";return;}
+  copyText(out.textContent,()=>qstatus.textContent="Copied. Paste it into an email to cfinney@finneysupplyco.com.",
+    ()=>{selectEl(out);qstatus.textContent="Request selected. Press Ctrl+C or ⌘C to copy it.";});
+});
+document.querySelectorAll(".copy").forEach(b=>b.addEventListener("click",()=>{
+  const el=document.getElementById(b.dataset.copy);
+  copyText(el.textContent,()=>{b.textContent="Copied";setTimeout(()=>b.textContent="Copy",1500);},()=>selectEl(el));
+}));
+render();
+</script>
+
+</body>
+</html>
